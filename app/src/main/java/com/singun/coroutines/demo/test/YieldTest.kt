@@ -10,19 +10,19 @@ import java.util.concurrent.Executors
  */
 object YieldTest {
     suspend fun test(view: View) {
-        //协程中带有yield会暂停协程的执行，留给其他协程执行机会
+        //协程中带有yield会挂起当前协程，留给其他协程执行机会，这时候当前的协程就会到队列最后
         //如果协程执行耗时操作，在循环中yield可以实现取消功能
         val result = getResult()
 
         //以下为kotlin标准库实现，不需要协程环境
-        //这里的yield与js/C#/python的yield类似，是一个迭代器的语法糖
+        //这里的yield与es/C#/python的yield类似，是一个迭代器的语法糖
 //        val result = YieldList().joinToString()
 //        val result = getFibonacci(10)
         Snackbar.make(view, result, Snackbar.LENGTH_LONG).show()
     }
 
     private suspend fun getResult(): String {
-        val singleDispatcher = Executors.newSingleThreadExecutor{ r -> Thread(r, "MyThread") }.asCoroutineDispatcher()
+        val singleDispatcher = Executors.newSingleThreadExecutor{ r -> Thread(r, "YieldThread") }.asCoroutineDispatcher()
         val list: MutableList<String> = ArrayList()
         val job = GlobalScope.launch {
             launch(singleDispatcher) {

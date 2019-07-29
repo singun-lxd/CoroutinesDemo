@@ -4,15 +4,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
  * 利用了Kotlin的委托语法，MainActivity继承了CoroutineScope的接口
+ * 有关livedata的用法可以参见https://developer.android.com/topic/libraries/architecture/coroutines
  */
-class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
+class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() + CoroutineName("MainActivity") {
     private val test = Test()
 
     override fun onCreate(savedInstanceState: Bundle?) {
