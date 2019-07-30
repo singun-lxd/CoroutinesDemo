@@ -8,9 +8,9 @@ import com.singun.coroutines.demo.test.*
  */
 class Test {
     suspend fun test(view: View) {
-//        CallbackTest.test(view)
+        CallbackTest.test(view)
 //        ScopeTest.test(view)
-//        DispatcherTest.test(view)
+//        ContextTest.test(view)
 //        YieldTest.test(view)
 //        CoroutinesTest.test(view)
 //        TimeoutTest.test(view)

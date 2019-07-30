@@ -24,6 +24,8 @@ object CoroutinesTest {
 
     suspend fun test(view: View) {
         // 同步执行的请求，先访问google再访问百度
+        // 为了大家比较好理解，所以这里用okhttp来讲解，retrofit也有用于协程的adapter
+        // 参见https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter
         val result = syncRequest()
         // 异步请求，同时开始google和百度的访问，当两者都完成时返回
         // async/await比较像es标准中的异步操作
